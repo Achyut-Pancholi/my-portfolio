@@ -701,8 +701,6 @@ import {
   Trash2,
   Calendar,
   MapPin,
-  Pencil,
-  Save,
   RefreshCw,
   Phone,
   FileText
@@ -987,13 +985,13 @@ const ProjectCard = ({ project, onRemove }) => (
 const UploadAvatar = ({ image, onUpload }) => {
   const fileInputRef = useRef(null);
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      onUpload(imageUrl);
-    }
-  };
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const imageUrl = URL.createObjectURL(file);
+  //     onUpload(imageUrl);
+  //   }
+  // };
 
   return (
     <div className="relative group w-32 h-32 md:w-48 md:h-48 mx-auto md:mx-0 mb-8 md:mb-0 flex-shrink-0 cursor-pointer" onClick={() => fileInputRef.current.click()}>
@@ -1010,14 +1008,14 @@ const UploadAvatar = ({ image, onUpload }) => {
       {/* Glow Effect */}
       <div className="absolute inset-0 rounded-full bg-cyan-500/20 blur-2xl -z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       
-      <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" />
+      {/* <input type="file" ref={fileInputRef} onChange={handleFileChange} className="hidden" accept="image/*" /> */}
     </div>
   );
 };
 
 export default function Portfolio() {
   const [editableInfo, setEditableInfo] = useState(initialPersonalInfo);
-  const [isEditing, setIsEditing] = useState(false);
+  //const [isEditing, setIsEditing] = useState(false);
   const [projects, setProjects] = useState(initialProjects);
   const [activeFilter, setActiveFilter] = useState('All');
   const [menuOpen, setMenuOpen] = useState(false);
@@ -1131,13 +1129,7 @@ export default function Portfolio() {
       <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden border-b border-slate-800/50 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
         
         {/* Edit Button */}
-        <button 
-            onClick={() => setIsEditing(!isEditing)}
-            className={`absolute top-24 right-6 md:top-36 md:right-16 z-40 p-3 rounded-full transition-all ${isEditing ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' : 'bg-slate-800 text-cyan-400 hover:bg-slate-700'}`}
-            title={isEditing ? "Save Changes" : "Edit Profile"}
-        >
-            {isEditing ? <Save size={20} /> : <Pencil size={20} />}
-        </button>
+        
 
         {/* Abstract Background Blobs */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-600/5 rounded-full blur-[120px] -z-10 pointer-events-none"></div>
@@ -1154,43 +1146,15 @@ export default function Portfolio() {
                
                <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
                  Hello, I'm <br />
-                 {isEditing ? (
-                    <input
-                        type="text"
-                        value={editableInfo.name}
-                        onChange={(e) => handleInfoChange('name', e.target.value)}
-                        className="text-white bg-slate-700/50 p-2 rounded w-full text-5xl md:text-7xl font-bold border border-cyan-500"
-                    />
-                 ) : (
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500">
-                      {editableInfo.name}
-                    </span>
-                 )}
+                 {editableInfo.name}
                </h1>
                
                <h2 className="text-xl md:text-2xl text-slate-400 font-light mb-8 max-w-2xl">
-                 {isEditing ? (
-                    <input
-                        type="text"
-                        value={editableInfo.title}
-                        onChange={(e) => handleInfoChange('title', e.target.value)}
-                        className="text-slate-400 bg-slate-700/50 p-2 rounded w-full border border-cyan-500"
-                    />
-                 ) : (
-                    editableInfo.title
-                 )}
+                 {editableInfo.title}
                </h2>
                
                <p className="text-slate-500 max-w-lg mx-auto md:mx-0 mb-10 leading-relaxed text-lg">
-                 {isEditing ? (
-                    <textarea
-                        value={editableInfo.tagline}
-                        onChange={(e) => handleInfoChange('tagline', e.target.value)}
-                        className="text-slate-500 bg-slate-700/50 p-2 rounded w-full border border-cyan-500 min-h-[100px]"
-                    />
-                 ) : (
-                    editableInfo.tagline
-                 )}
+                 {  editableInfo.tagline}
                </p>
                
                <div className="flex flex-wrap justify-center md:justify-start gap-4">
@@ -1247,44 +1211,24 @@ export default function Portfolio() {
               <Brain className="text-violet-500" /> About Me
             </h3>
             
-            {isEditing ? (
-                <textarea
-                    value={editableInfo.about}
-                    onChange={(e) => handleInfoChange('about', e.target.value)}
-                    className="text-slate-400 bg-slate-700/50 p-3 rounded w-full border border-cyan-500 min-h-[200px]"
-                />
-            ) : (
+            
                 <p className="text-slate-400 leading-relaxed text-lg">
                     {editableInfo.about}
                 </p>
-            )}
+            
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
                <div className="flex items-center gap-3 text-slate-400">
                  <MapPin className="text-cyan-500" size={18} /> 
-                 {isEditing ? (
-                    <input
-                        type="text"
-                        value={editableInfo.location}
-                        onChange={(e) => handleInfoChange('location', e.target.value)}
-                        className="text-slate-400 bg-slate-700/50 p-1 rounded w-full text-sm border border-cyan-500"
-                    />
-                 ) : (
+                 {
                     editableInfo.location
-                 )}
+                 }
                </div>
                <div className="flex items-center gap-3 text-slate-400">
                  <Mail className="text-cyan-500" size={18} /> 
-                 {isEditing ? (
-                    <input
-                        type="email"
-                        value={editableInfo.email}
-                        onChange={(e) => handleInfoChange('email', e.target.value)}
-                        className="text-slate-400 bg-slate-700/50 p-1 rounded w-full text-sm border border-cyan-500"
-                    />
-                 ) : (
+                 {
                     editableInfo.email
-                 )}
+                 }
                </div>
             </div>
           </div>
