@@ -698,7 +698,7 @@ import {
   X, 
   Upload,
   Trophy,
-  Trash2,
+  
   Calendar,
   MapPin,
   RefreshCw,
@@ -937,17 +937,11 @@ const SectionTitle = ({ title, subtitle }) => (
   </div>
 );
 
-const ProjectCard = ({ project, onRemove }) => (
+const ProjectCard = ({ project}) => (
   <div className="group relative bg-slate-800/40 border border-slate-700/60 rounded-xl overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/10 flex flex-col h-full backdrop-blur-sm">
     
     {/* Remove Button (Visible on Hover) */}
-    <button 
-      onClick={(e) => { e.stopPropagation(); onRemove(project.id); }}
-      className="absolute top-2 right-2 z-20 p-2 bg-red-500/10 text-red-400 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-red-500 hover:text-white"
-      title="Remove from portfolio view"
-    >
-      <Trash2 size={16} />
-    </button>
+    
 
     <div className="p-6 flex flex-col h-full">
       <div className="flex justify-between items-start mb-4">
@@ -1035,13 +1029,7 @@ export default function Portfolio() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleRemoveProject = (id) => {
-    setProjects(prev => prev.filter(p => p.id !== id));
-  };
-
-  const handleResetProjects = () => {
-    setProjects(initialProjects);
-  };
+ 
   
   const handleInfoChange = (field, value) => {
     setEditableInfo(prev => ({ ...prev, [field]: value }));
@@ -1284,20 +1272,13 @@ export default function Portfolio() {
             </div>
 
             {/* Reset Button */}
-            {projects.length !== initialProjects.length && (
-              <button 
-                onClick={handleResetProjects}
-                className="flex items-center gap-2 text-xs text-cyan-400 hover:text-white transition-colors"
-              >
-                <RefreshCw size={14} /> Restore Hidden Projects
-              </button>
-            )}
+           
           </div>
 
           {/* Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} onRemove={handleRemoveProject} />
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
 
