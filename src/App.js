@@ -1019,8 +1019,8 @@ export default function Portfolio() {
   const [profileImage, setProfileImage] = useState(profilePic);
   
   // NEW: State for AI Summary
-  const [aiSummary, setAiSummary] = useState("");
-  const [loadingAI, setLoadingAI] = useState(false);
+  // const [aiSummary, setAiSummary] = useState("");
+  // const [loadingAI, setLoadingAI] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -1035,31 +1035,31 @@ export default function Portfolio() {
     setEditableInfo(prev => ({ ...prev, [field]: value }));
   };
 
-  const generateAISummary = async () => {
-    setLoadingAI(true);
-    const apiKey = ""; // Leave empty, uses runtime env
-    const prompt = `Generate a professional summary for a portfolio for Achyut Pancholi, an AI/ML Engineer.
-    Highlights:
-    - Focus: AI Agent Orchestration, Generative AI, Full Stack.
-    - Tools: LangFlow, n8n, Streamlit, Azure.
-    - Key Projects: Flowbit (Agent Orchestration), Blockchain Doc Verification.
-    - Internships: Xebia (AIML), LaunchED (GenAI).
-    Output: A concise, impactful paragraph (approx 150 words) emphasizing quantifiable results and technical depth.`;
+  // const generateAISummary = async () => {
+  //   setLoadingAI(true);
+  //   const apiKey = ""; // Leave empty, uses runtime env
+  //   const prompt = `Generate a professional summary for a portfolio for Achyut Pancholi, an AI/ML Engineer.
+  //   Highlights:
+  //   - Focus: AI Agent Orchestration, Generative AI, Full Stack.
+  //   - Tools: LangFlow, n8n, Streamlit, Azure.
+  //   - Key Projects: Flowbit (Agent Orchestration), Blockchain Doc Verification.
+  //   - Internships: Xebia (AIML), LaunchED (GenAI).
+  //   Output: A concise, impactful paragraph (approx 150 words) emphasizing quantifiable results and technical depth.`;
 
-    try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-      });
-      const data = await response.json();
-      setAiSummary(data.candidates[0].content.parts[0].text);
-    } catch (error) {
-      console.error("AI Generation failed:", error);
-      setAiSummary("Failed to generate summary. Please try again.");
-    }
-    setLoadingAI(false);
-  };
+  //   try {
+  //     const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+  //     });
+  //     const data = await response.json();
+  //     setAiSummary(data.candidates[0].content.parts[0].text);
+  //   } catch (error) {
+  //     console.error("AI Generation failed:", error);
+  //     setAiSummary("Failed to generate summary. Please try again.");
+  //   }
+  //   setLoadingAI(false);
+  // };
 
   const categories = ['All', 'AI Agents', 'AI & ML', 'Generative AI', 'Full Stack', 'IoT', 'Blockchain', 'Data Science'];
   
@@ -1163,7 +1163,7 @@ export default function Portfolio() {
         </div>
       </header>
 
-      {/* --- AI SUMMARY SECTION --- */}
+      {/* --- AI SUMMARY SECTION ---
       <section className="py-12 bg-[#0B0F19] border-b border-slate-800">
         <div className="container mx-auto px-6 text-center">
           <button 
@@ -1189,7 +1189,7 @@ export default function Portfolio() {
             </div>
           )}
         </div>
-      </section>
+      </section> */}
 
       {/* --- ABOUT --- */}
       <section id="about" className="py-20 bg-[#0B0F19]">
