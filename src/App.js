@@ -1429,7 +1429,8 @@ export default function Portfolio() {
 
                  {/* UPDATED RESUME SECTION */}
                  <a 
-                   href="/assets/resume.pdf" 
+                   href={`${process.env.PUBLIC_URL}/assets/resume.pdf`}
+
                    target="_blank" 
                    rel="noopener noreferrer" 
                    download="Achyut_Pancholi_Resume.pdf"
