@@ -1,5 +1,5 @@
-// import './App.css';
-// import profilePic from './profile.png';
+import './App.css';
+import profilePic from './profile.png';
 // // Ensure Webpack includes the image
 // import React, { useState, useRef, useEffect } from 'react';
 // import { 
@@ -1019,7 +1019,7 @@ export default function Portfolio() {
   const [showContactModal, setShowContactModal] = useState(false);
   
   // Default profile image set to your GitHub avatar
-  const [profileImage, setProfileImage] = useState("https://github.com/Achyut-Pancholi.png");
+  const [profileImage, setProfileImage] = useState(profilePic);
   
   // NEW: State for AI Summary
   const [aiSummary, setAiSummary] = useState("");
