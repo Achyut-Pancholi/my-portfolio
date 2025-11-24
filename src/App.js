@@ -708,17 +708,22 @@ import {
   FileText
 } from 'lucide-react';
 
+// IMPORT YOUR LOCAL IMAGE HERE
+// Make sure profile.png is in the same folder as this file (src/)
+// If it is in src/assets/, change to './assets/profile.png'
+
+
 // --- DATA ---
 
 const initialPersonalInfo = {
   name: "Achyut Pancholi",
   title: "AI & Machine Learning Engineer | Full Stack Developer",
   tagline: "Bridging the gap between theoretical AI models and real-world applications.",
-  email: "achyutpancholi3011@gmail.com",
+  email: "achyutpancholi21@gmail.com",
   phone: "+91-6375872850",
   location: "Bhilwara, Rajasthan, India",
   github: "https://github.com/Achyut-Pancholi",
-  linkedin: "https://linkedin.com/in/achyut-pancholi-b6700b265",
+  linkedin: "https://www.linkedin.com/in/achyut-pancholi-b6700b265",
   about: "I am a Computer Science undergraduate specializing in Artificial Intelligence. My work ranges from building autonomous agents (LangFlow/n8n) to deploying scalable ML models on Azure. I am also proficient in Full Stack Web Development and Blockchain, allowing me to build complete, end-to-end systems."
 };
 
@@ -1018,7 +1023,7 @@ export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   
-  // Default profile image set to your GitHub avatar
+  // Use local imported image first, fall back to null if not present
   const [profileImage, setProfileImage] = useState(profilePic);
   
   // NEW: State for AI Summary
@@ -1502,5 +1507,3 @@ export default function Portfolio() {
     </div>
   );
 }
-//   );
-// }
